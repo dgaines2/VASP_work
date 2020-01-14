@@ -5,7 +5,7 @@
   {magmom}
 
 #= Ionic Relaxation Settings =#
-  EDIFFG = .1E-02
+  EDIFFG = {ediffg}
   LREAL = .FALSE.
   NSW = 100
   IBRION = 2
@@ -15,15 +15,15 @@
   NELMIN = 5
   ALGO = {algo}
   ENCUT = {encut}
-  EDIFF = 1E-5
+  EDIFF = {ediff}
 
 #= Write flags =#
   LCHARG = .FALSE.
   LWAVE = .FALSE.
 
 #= DOS =#
-  ISMEAR = 1
-  SIGMA = 0.1
+  ISMEAR = {ismear}
+  SIGMA = {sigma}
 
 #= Parallelization =#
   LPLANE = .TRUE.

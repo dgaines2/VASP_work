@@ -9,8 +9,8 @@ import json
 
 
 with open('kwargs.json', 'r') as kj:
-        kwargs = json.load(kj)
-supercomp = kwargs.get("supercomp", "quest")
+        first_kw = json.load(kj)
+supercomp = first_kw.get("supercomp", "quest")
 
 ## Absolute path of your pot_dict.json file
 with open('static_files/pot_dict.json', 'r') as f:

@@ -15,15 +15,15 @@
   NELMIN = 5
   ALGO = {algo}
   ENCUT = {encut}
-  EDIFF = 1E-7
+  EDIFF = {ediff}
 
 #= Write flags =#
   LCHARG = .FALSE.
   LWAVE = .FALSE.
 
 #= DOS =#
-  ISMEAR = -5
-  SIGMA = 0.1
+  ISMEAR = {ismear}
+  SIGMA = {sigma}
 
 #= Parallelization =#
   LPLANE = .TRUE.
