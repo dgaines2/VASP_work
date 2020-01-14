@@ -208,7 +208,7 @@ class DFTjob(object):
 
 
         incar = incar_tmp.format(algo=algo, npar=npar, kpar=kpar, isif=isif,
-                                 ispin=ispin, magmom=magmom, gga=gga, encut=encut
+                                 ispin=ispin, magmom=magmom, gga=gga, encut=encut,
                                  ismear=ismear, sigma=sigma, ediffg=ediffg)
 
         with open('INCAR', 'w') as f:
