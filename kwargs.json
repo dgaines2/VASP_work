@@ -1,9 +1,13 @@
 {
-    "kppra": 8000,  
+    "user_kps": [8, 8, 8],
     "encut": 520,  
     "npar": 1,    
     "kpar": 4,   
     "nodes": 1, 
     "ntasks": 28,
-    "queuetype": "short"
+    "queuetype": "RM-small",
+    "ismear": 0,
+    "sigma": 0.5,
+    "ediff": 1E-8,
+    "ediffg": -1E-3
 }

@@ -7,12 +7,15 @@ import subprocess
 import glob
 import json
 
+## Which supercomputer? [bridges, cori, quest]
+supercomp="bridges"
+
 ## Absolute path of your pot_dict.json file
 with open('static_files/pot_dict.json', 'r') as f:
     potdict = json.load(f)
 
 ## Collect user information from json
-with open('user_info.json', 'r') as f:
+with open(f"static_files/{supercomp}/user_info.json", 'r') as f:
     info = json.load(f)
 
 personal_alloc = info['personal_alloc']
@@ -147,7 +150,7 @@ class DFTjob(object):
 
         else:
             index = self.conf_lst.index(conf) - 1
-            pp = os.path.join(p, self.conf_lst[ index ])
+            pp = os.path.join(p, self.conf_lst[index])
             try:
                 shutil.copyfile(os.path.join(pp, 'CONTCAR'),
                                 os.path.join(cp, 'POSCAR'))
@@ -168,15 +171,22 @@ class DFTjob(object):
         if 'rlx' in conf:
             with open(self.global_path+'/static_files/INCAR.rlx', 'r') as f:
                 incar_tmp = f.read()
+            ismear = kwargs.get('ismear', 1)
+            ediff = kwargs.get('ediff', 1E-5)
+            ediffg = kwargs.get('ediffg', 1E-3)
         elif 'stc' in conf:
             with open(self.global_path+'/static_files/INCAR.stc', 'r') as f:
                 incar_tmp = f.read()
+            ismear = kwargs.get('ismear', -5)
+            ediff = kwargs.get('ediff', 1E-8)
+            ediffg = kwargs.get('ediffg', 0)
 
         npar = kwargs.get('npar', 1)
         kpar = kwargs.get('kpar', 4)
         gga = kwargs.get('gga', 'PE')
         encut = kwargs.get('encut', 520)
         isif = kwargs.get('isif', 3)
+        sigma = kwargs.get('sigma', 0.1)
 
         # consider spin polarization
         if_spin = kwargs.get('if_spin', 'auto')
@@ -198,13 +208,14 @@ class DFTjob(object):
 
 
         incar = incar_tmp.format(algo=algo, npar=npar, kpar=kpar, isif=isif,
-                                 ispin=ispin, magmom=magmom, gga=gga, encut=encut)
+                                 ispin=ispin, magmom=magmom, gga=gga, encut=encut
+                                 ismear=ismear, sigma=sigma, ediffg=ediffg)
 
         with open('INCAR', 'w') as f:
             f.write(incar)
 
         # job_script setup
-        with open(self.global_path+'/static_files/auto.q', 'r') as f:
+        with open(self.global_path+f'/static_files/{supercomp}/auto.q', 'r') as f:
             text = f.read()
         name = self.name
         nodes = kwargs.get('nodes', 4)
@@ -212,10 +223,10 @@ class DFTjob(object):
         key = kwargs.get('key', personal_alloc)
         if 'rlx' in conf:
             queuetype = kwargs.get('queuetype','Normal')
-            walltime = kwargs.get('walltime', '24:00:00')
+            walltime = kwargs.get('walltime', '4:00:00')
         elif 'stc' in conf:
             queuetype = kwargs.get('queuetype','short')
-            walltime = kwargs.get('walltime', '4:00:00')
+            walltime = kwargs.get('walltime', '1:00:00')
 
         qfile = text.format(nodes=nodes, 
                             ntasks=ntasks,
@@ -240,7 +251,7 @@ class DFTjob(object):
         with open(poscar_path, 'r') as f:
             atm_pos = f.readlines()[5].strip().split()
 
-        pot_singles = [ os.path.join(loc_pbe, potdict[v], 'POTCAR') for v in atm_pos ]
+        pot_singles = [os.path.join(loc_pbe, potdict[v], 'POTCAR') for v in atm_pos]
         cmd = 'cat '+' '.join(pot_singles)+' > '+os.path.join(potcar_path)
         os.system(cmd)
 
@@ -366,7 +377,7 @@ if __name__ == "__main__":
         sys.stdout = f   
         for p in poscars:
             # Create DFT task object, conf list can include as many rlx steps as desired
-            d = DFTjob(p, conf_lst=['rlx', 'rlx2', 'stc'])
+            d = DFTjob(p, conf_lst=['rlx', 'stc'])
 
             # Kwargs for this DFT task
             """
@@ -383,7 +394,7 @@ if __name__ == "__main__":
                 ntasks: 28                      # Number of tasks per job (number of nodes * 28/24/20)
                 queuetype: 'short'              # queue type (short, normal, long, etc)
                 key: personal_alloc             # personal allocation on quest
-                walltime: '2:00:00'             # walltime: '2:00:00' for relaxation, '0:30:00' for static 
+                walltime: '4:00:00'             # walltime: '4:00:00' for relaxation, '1:00:00' for static 
                 ifspin: 'auto'                  # whether spin polarization is considered ('auto', 'yes', 'no')
             """
             # Whether or not to submit the job right away
