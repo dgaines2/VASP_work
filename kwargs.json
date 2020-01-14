@@ -9,5 +9,6 @@
     "ismear": 0,
     "sigma": 0.5,
     "ediff": 1E-8,
-    "ediffg": -1E-3
+    "ediffg": -1E-3,
+    "supercomp": "bridges"
 }

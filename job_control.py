@@ -7,8 +7,10 @@ import subprocess
 import glob
 import json
 
-## Which supercomputer? [bridges, cori, quest]
-supercomp="bridges"
+
+with open('kwargs.json', 'r') as kj:
+        kwargs = json.load(kj)
+supercomp = kwargs.get("supercomp", "quest")
 
 ## Absolute path of your pot_dict.json file
 with open('static_files/pot_dict.json', 'r') as f:
@@ -208,7 +210,7 @@ class DFTjob(object):
 
 
         incar = incar_tmp.format(algo=algo, npar=npar, kpar=kpar, isif=isif,
-                                 ispin=ispin, magmom=magmom, gga=gga, encut=encut
+                                 ispin=ispin, magmom=magmom, gga=gga, encut=encut,
                                  ismear=ismear, sigma=sigma, ediffg=ediffg)
 
         with open('INCAR', 'w') as f:

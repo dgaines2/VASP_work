@@ -10,7 +10,12 @@ import job_control as jc
 import re
 import numpy as np
 
-with open('user_info.json', 'r') as f:
+
+with open('kwargs.json', 'r') as kj:
+        kwargs = json.load(kj)
+supercomp = kwargs.get("supercomp", "quest")
+
+with open(f'static_files/{supercomp}/user_info.json', 'r') as f:
     info = json.load(f)
 
 USER_name = info['user_name']
