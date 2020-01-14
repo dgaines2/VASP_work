@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #SBATCH -N {nodes}
-#SBATCH --n-tasks-per-node={ntasks}
+#SBATCH --ntasks-per-node={ntasks}
 #SBATCH -p {queuetype}
 #SBATCH -J {name}
 #SBATCH -t {walltime}
