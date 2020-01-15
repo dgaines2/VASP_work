@@ -1,0 +1,40 @@
+True
+
+Task:  ./366330/stc
+    setting up jobs
+True
+
+Task:  ./368029/stc
+    setting up jobs
+True
+
+Task:  ./446817/stc
+    setting up jobs
+True
+
+Task:  ./469740/stc
+    setting up jobs
+True
+
+Task:  ./471266/stc
+    setting up jobs
+True
+
+Task:  ./559201/stc
+    setting up jobs
+True
+
+Task:  ./559719/stc
+    setting up jobs
+True
+
+Task:  ./647131/stc
+    setting up jobs
+True
+
+Task:  ./647384/stc
+    setting up jobs
+True
+
+Task:  ./8367/stc
+    setting up jobs

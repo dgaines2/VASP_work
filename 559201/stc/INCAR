@@ -1,0 +1,33 @@
+#= General Settings =#
+  PREC = ACC
+  ISTART = 0
+  ISPIN = 1
+  
+
+#= Ionic Relaxation Settings =#
+  LREAL = .FALSE.
+  NSW = 0
+  IBRION = -1
+  ISIF = 3
+
+#= Electronic Relxation Settings =#
+  NELM = 150
+  NELMIN = 5
+  ALGO = Normal
+  ENCUT = 520
+  EDIFF = 1e-08
+
+#= Write flags =#
+  LCHARG = .FALSE.
+  LWAVE = .FALSE.
+
+#= DOS =#
+  ISMEAR = 0
+  SIGMA = 0.05
+
+#= Parallelization =#
+  LPLANE = .TRUE.
+  NPAR = 1
+  KPAR = 4
+
+  GGA = PE

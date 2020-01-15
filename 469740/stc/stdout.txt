@@ -1,0 +1,51 @@
+ running on   28 total cores
+ distrk:  each k-point on    7 cores,    4 groups
+ distr:  one band on    7 cores,    1 groups
+ using from now: INCAR     
+ vasp.5.4.4.18Apr17-6-g9f103f2a35 (build Jun 23 2019 17:35:09) complex          
+  
+ POSCAR found type information on POSCAR  Bi Cs K 
+ POSCAR found :  3 types and       4 ions
+ scaLAPACK will be used
+
+ ----------------------------------------------------------------------------- 
+|                                                                             |
+|           W    W    AA    RRRRR   N    N  II  N    N   GGGG   !!!           |
+|           W    W   A  A   R    R  NN   N  II  NN   N  G    G  !!!           |
+|           W    W  A    A  R    R  N N  N  II  N N  N  G       !!!           |
+|           W WW W  AAAAAA  RRRRR   N  N N  II  N  N N  G  GGG   !            |
+|           WW  WW  A    A  R   R   N   NN  II  N   NN  G    G                |
+|           W    W  A    A  R    R  N    N  II  N    N   GGGG   !!!           |
+|                                                                             |
+|      You have enabled k-point parallelism (KPAR>1).                         |
+|      This developmental code was originally  written by Paul Kent at ORNL,  |
+|      and carefully double checked in Vienna.                                |
+|      GW as well as linear response parallelism added by Martijn Marsman     |
+|      and Georg Kresse.                                                      |
+|      Carefully verify results versus KPAR=1.                                |
+|      Report problems to Paul Kent and Vienna.                               |
+|                                                                             |
+ ----------------------------------------------------------------------------- 
+
+ LDA part: xc-table for Pade appr. of Perdew
+ POSCAR, INCAR and KPOINTS ok, starting setup
+ FFT: planning ...
+ WAVECAR not read
+ entering main loop
+       N       E                     dE             d eps       ncg     rms          rms(c)
+DAV:   1     0.385577152515E+03    0.38558E+03   -0.19568E+04  1450   0.155E+03
+DAV:   2     0.243202708189E+02   -0.36126E+03   -0.35677E+03  1705   0.410E+02
+DAV:   3    -0.788066853983E+01   -0.32201E+02   -0.32157E+02  2037   0.128E+02
+DAV:   4    -0.914363600593E+01   -0.12630E+01   -0.12616E+01  2216   0.231E+01
+DAV:   5    -0.917706793808E+01   -0.33432E-01   -0.33429E-01  2225   0.310E+00    0.447E+00
+DAV:   6    -0.843286189699E+01    0.74421E+00   -0.17817E+00  1683   0.371E+00    0.342E+00
+DAV:   7    -0.830564277404E+01    0.12722E+00   -0.86827E-01  2046   0.334E+00    0.183E+00
+DAV:   8    -0.831638336353E+01   -0.10741E-01   -0.12300E-01  1800   0.204E+00    0.233E-01
+DAV:   9    -0.831582909304E+01    0.55427E-03   -0.19066E-02  2021   0.567E-01    0.152E-01
+DAV:  10    -0.831611644500E+01   -0.28735E-03   -0.24236E-03  1844   0.254E-01    0.360E-02
+DAV:  11    -0.831613477749E+01   -0.18332E-04   -0.37705E-04  1861   0.125E-01    0.169E-02
+DAV:  12    -0.831613289457E+01    0.18829E-05   -0.31234E-05  2050   0.413E-02    0.423E-03
+DAV:  13    -0.831613385492E+01   -0.96035E-06   -0.43221E-06  2421   0.759E-03    0.246E-03
+DAV:  14    -0.831613364603E+01    0.20889E-06   -0.18593E-06  1896   0.472E-03    0.281E-04
+DAV:  15    -0.831613365091E+01   -0.48885E-08   -0.84178E-08  1659   0.130E-03
+   1 F= -.83161337E+01 E0= -.83161336E+01  d E =-.204279E-07
