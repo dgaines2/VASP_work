@@ -5,9 +5,9 @@
     "kpar": 4,   
     "nodes": 1, 
     "ntasks": 28,
-    "queuetype": "RM-small",
+    "queuetype": "regular",
     "ismear": 0,
     "sigma": 0.05,
     "ediffg": -1E-3,
-    "supercomp": "bridges"
+    "supercomp": "cori"
 }

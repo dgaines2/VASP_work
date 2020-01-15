@@ -15,13 +15,13 @@ export OMP_NUM_THREADS=1
 
 #run the application:
 module purge
-module load vasp/20170629-knl
+module load vasp/20181030-knl
 
 gunzip -f CHGCAR.gz WAVECAR.gz &> /dev/null
 date +%s
 ulimit -s unlimited
 
-mpitasks=`echo $SLURM_JOB_NUM_NODES*64|bc`
+mpitasks=`echo $SLURM_JOB_NUM_NODES*68|bc`
 srun -n $mpitasks -c 4 --cpu_bind=cores vasp_std > stdout.txt 2> stderr.txt
 
 gzip -f CHGCAR OUTCAR PROCAR WAVECAR
