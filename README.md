@@ -6,14 +6,14 @@
 
 ## Setting up your jobs
 - Put POSCAR files into *`poscars/`* folder
-    -Must be in format POSCAR\_\*
+  - Must be in format POSCAR\_\*
 - Download POTCAR files into a folder
 - Make **check_converge.sh** executable by `chmod +x check_converge.sh`
 - Prepare *`user_info.json`* file:
   - `user_name`: your user name on quest
   - `pot_pbe_path`: the absolute path to your POTCAR folder
   - `personal_alloc`: your personal allocation id
-- Prepare *`kwarg.json`* file accordingly (Default settings can be found [below](https://github.com/mohanliu/VASP_work/blob/master/README.md#default-kwargs-settings)) 
+- Prepare *`kwargs.json`* file accordingly (Default settings can be found [below](https://github.com/mohanliu/VASP_work/blob/master/README.md#default-kwargs-settings)) 
 - Set up jobs by `python job_control.py`
   - Run this script in a `screen` or `tmux` session is highly recommended. This script will automatically check whether the previous job is completed and submit the next job.
 - Collect your results into json file by `python output_results.py`
