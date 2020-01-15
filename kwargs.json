@@ -7,8 +7,7 @@
     "ntasks": 28,
     "queuetype": "RM-small",
     "ismear": 0,
-    "sigma": 0.5,
-    "ediff": 1E-8,
+    "sigma": 0.05,
     "ediffg": -1E-3,
     "supercomp": "bridges"
 }

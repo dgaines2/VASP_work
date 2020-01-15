@@ -91,6 +91,7 @@ class DFTjob(object):
             else:
                 os.chdir(cp)
                 out = subprocess.check_output(['../../check_converge.sh','../../current_running']).decode("utf-8") 
+                print(out)
                 
                 if "in queue" in out:
                     os.chdir(self.global_path)
@@ -104,7 +105,7 @@ class DFTjob(object):
                 elif "No jobid stored" in out:
                     print("No job submitted!")
                     os.chdir(self.global_path)
-                    return 4, c
+                    return 0, c
                 else:
                     os.chdir(self.global_path)
                     print(out)
@@ -112,10 +113,10 @@ class DFTjob(object):
         return 3, c
 
 
-    def create(self, conf, algo='Fast', **kwargs):
+    def create(self, conf, algo='Normal', **kwargs):
         """
         Create input files for a VASP calculation
-        Note: Create a Job using ALGO=Fast!
+        Note: Create a Job using ALGO=Normal!
         """
         cp = os.path.join(self.path, conf) # Conf path
 
@@ -176,7 +177,7 @@ class DFTjob(object):
             ismear = kwargs.get('ismear', 1)
             ediff = kwargs.get('ediff', 1E-5)
             ediffg = kwargs.get('ediffg', 1E-3)
-        elif 'stc' in conf:
+        else: # 'elif 'stc' in conf:`
             with open(self.global_path+'/static_files/INCAR.stc', 'r') as f:
                 incar_tmp = f.read()
             ismear = kwargs.get('ismear', -5)
@@ -211,7 +212,7 @@ class DFTjob(object):
 
         incar = incar_tmp.format(algo=algo, npar=npar, kpar=kpar, isif=isif,
                                  ispin=ispin, magmom=magmom, gga=gga, encut=encut,
-                                 ismear=ismear, sigma=sigma, ediffg=ediffg)
+                                 ismear=ismear, sigma=sigma, ediff=ediff, ediffg=ediffg)
 
         with open('INCAR', 'w') as f:
             f.write(incar)
@@ -379,7 +380,7 @@ if __name__ == "__main__":
         sys.stdout = f   
         for p in poscars:
             # Create DFT task object, conf list can include as many rlx steps as desired
-            d = DFTjob(p, conf_lst=['rlx', 'stc'])
+            d = DFTjob(p, conf_lst=['rlx', 'stc'], from_scratch=False)
 
             # Kwargs for this DFT task
             """
